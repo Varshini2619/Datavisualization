@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Interactive Data Visualization – CSS & HTML5</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel = "stylesheet" href = "style.css">
+</head>
+<body>
+  <input class="theme-toggle" id="theme" type="checkbox" hidden />
+
+  <header class="nav" aria-label="Top Navigation">
+    <div class="brand">
+      <span class="brand-badge" aria-hidden="true"></span>
+      <span>Business • Analytics</span>
+    </div>
+    <div class="spacer"></div>
+    <label class="theme-switch" for="theme" title="Toggle Light/Dark">
+      <span>Theme</span>
+      <span aria-hidden="true" class="theme-toggle" style="pointer-events:none"></span>
+    </label>
+  </header>
+
+  <main class="app">
+    <aside class="sidebar">
+      <div class="side-item active" data-section="dashboard">Dashboard</div>
+      <div class="side-item" data-section="products">Products</div>
+      <div class="side-item" data-section="customers">Customers</div>
+      <div class="side-item" data-section="reports">Reports</div>
+      <div class="side-item" data-section="settings">Settings</div>
+
+      <div class="user-card" aria-label="Current User">
+        <div class="user-avatar" aria-hidden="true"></div>
+        <div>
+          <div style="font-weight:800">Varshu</div>
+          <div style="color:var(--muted); font-size:.85rem">UI/UX & Dev</div>
+        </div>
+      </div>
+    </aside>
+
+    <section class="main" id="main">
+  
+      <div class="kpis">
+        <article class="card">
+          <h4>Orders</h4>
+          <div class="value" id="kpiOrders">201</div>
+          <div class="sub"><span class="badge" id="kpiOrdersDelta">+12%</span> <span id="kpiOrdersNote">vs last week</span></div>
+        </article>
+        <article class="card">
+          <h4>Active Users</h4>
+          <div class="value" id="kpiUsers">4,890</div>
+          <div class="sub" id="kpiUsersNote">Avg. session 6m 12s</div>
+        </article>
+        <article class="card">
+          <h4>Conversion</h4>
+          <div class="value" id="kpiConv">1.20%</div>
+          <div class="sub" id="kpiConvNote">+0.14% MoM</div>
+        </article>
+        <article class="card">
+          <h4>Revenue</h4>
+          <div class="value" id="kpiRev">$30,562</div>
+          <div class="sub" id="kpiRevNote">MRR · Q2</div>
+        </article>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <div class="section-title">
+            <h3 id="barTitle">Weekly Sales (Bar)</h3>
+            <div class="chips">
+              <span class="chip" id="barChip1">This week</span>
+              <span class="chip" id="barChip2">USD</span>
+            </div>
+          </div>
+
+          <div class="bar-chart" id="barChart" role="img" aria-label="Weekly sales bar chart">
+            <div class="bar" style="--value:35%" data-value="Sun 3.5k"></div>
+            <div class="bar" style="--value:52%" data-value="Mon 5.2k"></div>
+            <div class="bar" style="--value:68%" data-value="Tue 6.8k"></div>
+            <div class="bar" style="--value:74%" data-value="Wed 7.4k"></div>
+            <div class="bar" style="--value:56%" data-value="Thu 5.6k"></div>
+            <div class="bar" style="--value:92%" data-value="Fri 9.2k"></div>
+            <div class="bar" style="--value:44%" data-value="Sat 4.4k"></div>
+          </div>
+          <div class="bar-labels" aria-hidden="true" id="barLabels">
+            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="section-title">
+            <h3 id="donutTitle">Orders by Source (Donut)</h3>
+            <div class="chips"><span class="chip" id="donutChip">Last 30 days</span></div>
+          </div>
+
+          <div style="display:grid; place-items:center">
+            <div class="donut" id="donut" style="--percent:68">
+              <div class="donut-label" id="donutLabel">68%</div>
+            </div>
+            <div class="legend" id="donutLegend">
+              <span><i class="swatch yellow"></i> Paid Ads</span>
+              <span><i class="swatch blue"></i> Organic</span>
+              <span><i class="swatch green"></i> Referral</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid-2">
+        <article class="card">
+          <div class="section-title">
+            <h3 id="lineTitle">Monthly Trend (Line)</h3>
+            <div class="chips"><span class="chip" id="lineChip">2025</span></div>
+          </div>
+          <div class="line-wrap" role="img" aria-label="Monthly trend line chart">
+            <svg viewBox="0 0 600 240" preserveAspectRatio="none" id="lineSvg">
+              <g class="line-grid" stroke="currentColor">
+                <line x1="0" y1="40"  x2="600" y2="40"/>
+                <line x1="0" y1="80"  x2="600" y2="80"/>
+                <line x1="0" y1="120" x2="600" y2="120"/>
+                <line x1="0" y1="160" x2="600" y2="160"/>
+                <line x1="0" y1="200" x2="600" y2="200"/>
+              </g>
+              <polyline class="line" id="linePath"
+                points="0,180 55,160 110,150 165,130 220,100 275,115 330,90 385,80 440,70 495,92 550,60 600,70"/>
+              <g id="lineDots">
+                <circle class="dot" cx="0"   cy="180"><title>Jan: $12.0k</title></circle>
+                <circle class="dot" cx="55"  cy="160"><title>Feb: $14.2k</title></circle>
+                <circle class="dot" cx="110" cy="150"><title>Mar: $15.1k</title></circle>
+                <circle class="dot" cx="165" cy="130"><title>Apr: $17.9k</title></circle>
+                <circle class="dot" cx="220" cy="100"><title>May: $21.4k</title></circle>
+                <circle class="dot" cx="275" cy="115"><title>Jun: $19.6k</title></circle>
+                <circle class="dot" cx="330" cy="90"><title>Jul: $22.8k</title></circle>
+                <circle class="dot" cx="385" cy="80"><title>Aug: $24.0k</title></circle>
+                <circle class="dot" cx="440" cy="70"><title>Sep: $25.2k</title></circle>
+                <circle class="dot" cx="495" cy="92"><title>Oct: $22.3k</title></circle>
+                <circle class="dot" cx="550" cy="60"><title>Nov: $26.8k</title></circle>
+                <circle class="dot" cx="600" cy="70"><title>Dec: $25.6k</title></circle>
+              </g>
+            </svg>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="section-title">
+            <h3 id="tableTitle">Transactions</h3>
+            <div class="chips"><span class="chip">Virtualized</span><span class="chip" id="rowCountChip">0 rows</span></div>
+          </div>
+
+          <div class="table-card" id="txnViewport" aria-label="Transactions table (virtualized)">
+            <table class="table">
+              <thead>
+                <tr><th>ID</th><th>Customer</th><th>Amount</th><th>Status</th></tr>
+              </thead>
+            </table>
+            <div class="vp-rail">
+              <div class="vp-spacer" id="vpSpacer"></div>
+              <table class="table vp-rows">
+                <tbody id="vpBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script id="transactions-data" type="application/json"></script>
+  <script src = "script.js">
+</script>
+</body>
+</html>
