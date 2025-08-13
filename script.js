@@ -1,24 +1,45 @@
+// ===== THEME INITIALIZATION (Desktop + Mobile) =====
 (function themeInit(){
-  const cb = document.getElementById('theme');
-  const saved = localStorage.getItem('theme');
-  const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const cb = document.getElementById('theme'); // Desktop checkbox
+    const btn = document.getElementById('theme-toggle'); // Mobile theme button
+    const saved = localStorage.getItem('theme');
+    const preferDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  function apply(mode){
-    document.body.classList.toggle('dark', mode === 'dark');
-    const fakeSwitch = document.querySelector('header .theme-switch .theme-toggle');
-    if (fakeSwitch) fakeSwitch.classList.toggle('checked', mode === 'dark');
-  }
+    function apply(mode){
+        document.body.classList.toggle('dark', mode === 'dark');
+        const fakeSwitch = document.querySelector('header .theme-switch .theme-toggle');
+        if (fakeSwitch) fakeSwitch.classList.toggle('checked', mode === 'dark');
+    }
 
-  const initial = saved || (preferDark ? 'dark' : 'light');
-  apply(initial);
-  cb.checked = initial === 'dark';
+    const initial = saved || (preferDark ? 'dark' : 'light');
+    apply(initial);
+    if (cb) cb.checked = initial === 'dark';
 
-  cb.addEventListener('change', () => {
-    const mode = cb.checked ? 'dark' : 'light';
-    apply(mode);
-    localStorage.setItem('theme', mode);
-  });
+    function toggleTheme(){
+        const mode = document.body.classList.contains('dark') ? 'light' : 'dark';
+        apply(mode);
+        localStorage.setItem('theme', mode);
+        if (cb) cb.checked = mode === 'dark';
+    }
+
+    if (cb) {
+        cb.addEventListener('change', () => {
+            const mode = cb.checked ? 'dark' : 'light';
+            apply(mode);
+            localStorage.setItem('theme', mode);
+        });
+    }
+
+    if (btn) {
+        btn.addEventListener('click', toggleTheme);
+    }
 })();
+
+// ===== SIDEBAR MENU TOGGLE (Fixing the typo) =====
+document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('side-wrapper').classList.toggle('active');
+});
+
 
 (function virtualTable(){
   const viewport = document.getElementById('txnViewport');
