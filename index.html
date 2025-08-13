@@ -9,12 +9,18 @@
 </head>
 <body>
 
+  <input class="theme-toggle" id="theme" type="checkbox" />
 
   <header class="nav" aria-label="Top Navigation">
     <div class="brand">
       <span class="brand-badge" aria-hidden="true"></span>
       <span>Business • Analytics</span>
     </div>
+    <div class="spacer"></div>
+    <label class="theme-switch" for="theme" title="Toggle Light/Dark">
+      <span>Theme</span>
+      <span aria-hidden="true" class="theme-toggle" style="pointer-events:none"></span>
+    </label>
   </header>
 
   <main class="app">
