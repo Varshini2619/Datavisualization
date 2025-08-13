@@ -314,3 +314,11 @@
   });
   applySection('dashboard');
 })();
+
+document.getElementById('menu-toggle').addEventListener('click', () => {
+    document.getElementById('side-wrapper').classList.toggle('active');
+});
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    document.body.classList.toggle('light-theme');
+});
